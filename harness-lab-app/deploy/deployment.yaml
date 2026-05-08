@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: harness-demo
+  labels:
+    app: harness-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: harness-demo
+  template:
+    metadata:
+      labels:
+        app: harness-demo
+    spec:
+      containers:
+        - name: harness-demo
+          image: YOUR_DOCKERHUB_USERNAME/harness-demo:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: harness-demo-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: harness-demo
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
