@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Wolf_gi_harness_test_repository_1778235058408-pr-trigger-input-set
+  identifier: Build_Wolf_gi_harness_test_repository_1778235058408prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_Wolf_gi_harness_test_repository_1778235058408
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
