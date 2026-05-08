@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Wolf_gi_harness_test_repository_1778235058408-push-trigger-input-set
+  identifier: Build_Wolf_gi_harness_test_repository_1778235058408pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_Wolf_gi_harness_test_repository_1778235058408
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
